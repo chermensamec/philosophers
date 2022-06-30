@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbart <sbart@student.21-school.ru>         +#+  +:+       +#+        */
+/*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:07:05 by sbart             #+#    #+#             */
-/*   Updated: 2022/06/29 22:19:02 by onelda           ###   ########.fr       */
+/*   Updated: 2022/06/30 21:50:44 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	join_pthread(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->numb_philo)
+	{
+		pthread_join(data->pthreads[i++], NULL);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,6 +34,8 @@ int	main(int argc, char **argv)
 		printf("error");
 		return (0);
 	}
+	create_pthreads(data);
+	join_pthread(data);
 	printf("%d\n", data->numb_philo);
 	printf("%d\n", data->time_to_die);
 	printf("%d\n", data->time_to_eat);
