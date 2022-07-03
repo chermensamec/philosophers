@@ -12,7 +12,6 @@ void	set_param(t_data *data, int argc, char **argv)
 		data->error = 1;
 }
 
-//pthread_create(data->pthreads + i, NULL, lunch, data->philosophers[i]);
 void	create_philosophers(t_data *data)
 {
 	int	i;
@@ -30,9 +29,10 @@ void	create_philosophers(t_data *data)
 		data->philosophers[i]->right = data->fork +((i + 1) % (data->numb_philo));
 		data->philosophers[i]->index = i;
 		data->philosophers[i]->count_eat = 0;
-		data->philosophers[i]->time_eat = 9223372036854775807;
+		data->philosophers[i]->time_eat = 0;
 		data->philosophers[i]->link = data;
 		data->philosophers[i]->alive = 1;
+		data->philosophers[i]->time_eat = current_time();
 		i++;
 	}
 }
@@ -43,16 +43,12 @@ void	create_pthreads(t_data *data)
 
 	i = 0;
 	data->pthreads = malloc(sizeof(pthread_t) * data->numb_philo);
+	data->time_start = current_time();
 	while (i < data->numb_philo)
 	{
-
-		//printf("index_main: %d \n", data->philosophers[i]->index);
 		pthread_create(data->pthreads + i, NULL, lunch, data->philosophers[i]);
 		i++;
 	}
-	i = 0;
-	while (i < data->numb_philo)
-		pthread_join(data->pthreads[i++], NULL);
 }
 
 t_data	*init(int argc, char **argv)
@@ -64,12 +60,14 @@ t_data	*init(int argc, char **argv)
 	if (argc != 5 && argc != 6)
    		return (data);
 	data->error = 0;
-	set_param(data, argc, argv);
 	if (argc == 6)
 		data->times_must_eat = ft_atoi(argv[5]);
 	else 
 		data->times_must_eat = -1;
-	data->time_start = current_time();
-	create_philosophers(data);	
+	set_param(data, argc, argv);
+	pthread_mutex_init(&data->eat_mutex, NULL);
+	pthread_mutex_init(&data->count_mutex, NULL);
+	pthread_mutex_init(&data->time_mutex, NULL);
+	create_philosophers(data);
 	return (data);
 }

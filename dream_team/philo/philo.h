@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:06:57 by sbart             #+#    #+#             */
-/*   Updated: 2022/06/30 20:56:58 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/03 18:45:14 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_data
 	t_philo	**philosophers;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	log;
+	pthread_mutex_t	eat_mutex;
+	pthread_mutex_t	count_mutex;
+	pthread_mutex_t	time_mutex;
 	pthread_t		*pthreads;
 }		t_data;
 
@@ -51,6 +54,9 @@ t_data	*init(int argc, char **argv);
 void	*lunch(void *param);
 long long current_time();
 void	create_pthreads(t_data *data);
+void	logs(char *str, t_philo *philo);
+void	check_dead(t_data *data);
+
 
 
 #endif
