@@ -24,7 +24,7 @@ void	set_param(t_data *data, int argc, char **argv)
 		data->error = 1;
 }
 
-int	change_param(t_data *data, int i)
+int	set_philosopher_param(t_data *data, int i)
 {
 	data->philosophers[i] = malloc(sizeof(t_philo));
 	if (!data->philosophers[i])
@@ -33,7 +33,6 @@ int	change_param(t_data *data, int i)
 	data->philosophers[i]->right = data->fork +((i + 1) % (data->numb_philo));
 	data->philosophers[i]->index = i;
 	data->philosophers[i]->count_eat = 0;
-	data->philosophers[i]->time_eat = 0;
 	data->philosophers[i]->link = data;
 	data->philosophers[i]->time_eat = current_time();
 	return (0);
@@ -44,19 +43,19 @@ int	create_philosophers(t_data *data)
 	int	i;
 
 	i = 0;
-	data->philosophers = malloc(sizeof(t_philo *) * data->numb_philo);
-	if (!data->philosophers)
-		return (1);
 	data->fork = malloc(sizeof(pthread_mutex_t) * data->numb_philo);
 	if (!data->fork)
 		return (1);
+	data->philosophers = malloc(sizeof(t_philo *) * data->numb_philo);
+	if (!data->philosophers)
+		return (free_error(1, data, 0));
 	while (i < data->numb_philo)
 		pthread_mutex_init(data->fork + i++, NULL);
 	i = 0;
 	while (i < data->numb_philo)
 	{
-		if (change_param(data, i))
-			return (1);
+		if (set_philosopher_param(data, i))
+			return (free_error(2, data, 1));
 		i++;
 	}
 	return (0);

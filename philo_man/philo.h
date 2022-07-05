@@ -55,5 +55,6 @@ long long	current_time(void);
 void		create_pthreads(t_data *data);
 void		logs(char *str, t_philo *philo);
 void		check_dead(t_data *data);
+int			free_error(int error, t_data *data, int n);
 
 #endif

@@ -8,11 +8,11 @@
 
 typedef struct s_philo
 {
-	int				index;
-	int				count_eat;
-	sem_t			*fork;
-	long long		time_eat;
-	struct s_data	*link;
+	int		index;
+	int		count_eat;
+	long long	time_eat;
+	struct s_data	*link;	
+	pid_t		p_id;
 }	t_philo;
 
 typedef struct s_data
@@ -24,13 +24,11 @@ typedef struct s_data
 	int		times_must_eat;
 	int		error;
 	long long	time_start;	
-	t_philo	**philosophers;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	log;
-	pthread_mutex_t	eat_mutex;
-	pthread_mutex_t	count_mutex;
-	pthread_mutex_t	time_mutex;
-	pthread_t		*pthreads;
+	t_philo		**philosophers;
 }		t_data;
+
+int	ft_atoi(const char *string);
+int	free_error(int error, t_data *data, int n);
+long long	current_time(void);
 
 #endif 
