@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	free_error(int error, t_data *data, int n)
 {
@@ -11,7 +11,7 @@ int	free_error(int error, t_data *data, int n)
 			free(data->philosophers[i++]);
 		free(data->philosophers);
 	}
-	if (error >= 1)
-		free(data->fork);
+	//if (error >= 1)
+		//free(data->fork);
 	return (1);
 }

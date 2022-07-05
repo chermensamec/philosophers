@@ -41,6 +41,7 @@ int	create_philosophers(t_data *data)
 	int	i;
 
 	i = 0;
+	data->p_id = malloc(sizeof(pid_t) * data->numb_philo);
 	data->philosophers = malloc(sizeof(t_philo *) * data->numb_philo);
 	if (!data->philosophers)
 		return (free_error(1, data, 0));
