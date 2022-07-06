@@ -15,6 +15,7 @@ typedef struct s_philo
 	int		index;
 	int		count_eat;
 	long long	time_eat;
+	pthread_t	philo_pthread;
 	struct s_data	*link;	
 }	t_philo;
 
@@ -28,6 +29,7 @@ typedef struct s_data
 	int		error;
 	long long	time_start;		
 	pid_t		*p_id;
+	sem_t		forks;
 	t_philo		**philosophers;
 }		t_data;
 

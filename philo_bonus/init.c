@@ -55,6 +55,12 @@ int	create_philosophers(t_data *data)
 	return (0);
 }
 
+void	create_semathors(t_data *data)
+{
+	data->forks = sem_open("forks", O_CREAT, 0777, data->numb_philo);
+	
+}
+
 t_data	*init(int argc, char **argv)
 {
 	t_data	*data;
@@ -70,5 +76,6 @@ t_data	*init(int argc, char **argv)
 		data->times_must_eat = -1;
 	set_param(data, argc, argv);
 	data->error = create_philosophers(data);
+	create_semathors();
 	return (data);
 }
