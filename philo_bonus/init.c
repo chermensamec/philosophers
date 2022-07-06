@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/04 18:57:56 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/06 15:48:29 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ int	create_philosophers(t_data *data)
 
 void	create_semathors(t_data *data)
 {
-	data->forks = sem_open("forks", O_CREAT, 0777, data->numb_philo);
-	
+	sem_unlink("forks");
+	sem_unlink("log");
+	// data->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, 1);
+	data->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, data->numb_philo);
+	data->log = sem_open("log", O_CREAT | O_EXCL, 0777, 1);
 }
 
 t_data	*init(int argc, char **argv)
@@ -76,6 +79,6 @@ t_data	*init(int argc, char **argv)
 		data->times_must_eat = -1;
 	set_param(data, argc, argv);
 	data->error = create_philosophers(data);
-	create_semathors();
+	create_semathors(data);
 	return (data);
 }

@@ -12,10 +12,10 @@
 # include <signal.h>
 typedef struct s_philo
 {
-	int		index;
-	int		count_eat;
-	long long	time_eat;
-	pthread_t	philo_pthread;
+	int				index;
+	int				count_eat;
+	long long		time_eat;
+	pthread_t		philo_pthread;
 	struct s_data	*link;	
 }	t_philo;
 
@@ -29,7 +29,8 @@ typedef struct s_data
 	int		error;
 	long long	time_start;		
 	pid_t		*p_id;
-	sem_t		forks;
+	sem_t		*forks;
+	sem_t		*log;
 	t_philo		**philosophers;
 }		t_data;
 
@@ -37,5 +38,8 @@ t_data	*init(int argc, char **argv);
 int	ft_atoi(const char *string);
 int	free_error(int error, t_data *data, int n);
 long long	current_time(void);
-void philo_life(t_data *data, int i);
+void	*philo_life(void	*param);
+void	logs(char *str, t_philo *philo);
+void	my_sleep(int time);
+void	init_proc(t_data *data);
 #endif 
