@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:27:33 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 19:26:29 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:11:27 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char *argv[])
 	data = init(argc, argv);
 	if (data->error)
 	{
+		free(data);
 		printf("error");
 		return (0);
 	}
