@@ -14,6 +14,7 @@
 
 void	logs(char *str, t_philo *philo)
 {
+	sem_wait(philo->link->must_eat);
 	if (philo->link->times_must_eat != 0)
 	{
 		sem_wait(philo->link->log);
@@ -22,4 +23,5 @@ void	logs(char *str, t_philo *philo)
 		if (str[0] != 'd')
 			sem_post(philo->link->log);
 	}
+	sem_post(philo->link->must_eat);
 }

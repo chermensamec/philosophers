@@ -12,7 +12,7 @@
 
 #include "philo_bonus.h"
 
-void	free_sem(t_data *data)
+/*void	free_sem(t_data *data)
 {
 	sem_close(data->forks);
 	sem_close(data->log);
@@ -20,7 +20,7 @@ void	free_sem(t_data *data)
 	sem_unlink("fork");
 	sem_unlink("log");
 	sem_unlink("time");
-}
+}*/
 
 void	free_data(t_data *data)
 {
@@ -79,6 +79,6 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i++ < data->numb_philo)
 		waitpid(data->p_id[i], NULL, 0);
-	free_sem(data);
+	//free_sem(data);
 	free_data(data);
 }

@@ -40,6 +40,8 @@ void	init_proc(t_data *data)
 			exit(1);
 		if (data->p_id[i] == 0)
 		{
+			if (i % 2 == 0)
+				usleep(100);
 			pthread_create(&data->philosophers[i]->philo_pthread, NULL, \
 					philo_life, data->philosophers[i]);
 			pthread_detach(data->philosophers[i]->philo_pthread);

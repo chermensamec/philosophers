@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <signal.h>
-
+# include <fcntl.h>
 typedef struct s_philo
 {
 	int				index;
@@ -44,6 +44,7 @@ typedef struct s_data
 	sem_t		*forks;
 	sem_t		*log;
 	sem_t		*time;
+	sem_t		*must_eat;
 	t_philo		**philosophers;
 }		t_data;
 

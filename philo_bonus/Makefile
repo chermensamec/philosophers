@@ -5,7 +5,7 @@ NAME_BON = philo_bonus
 
 INCLUDES_BON = philo_bonus.h
 
-FLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 OBJ_BON = $(patsubst %.c, %.o, $(SRC_BON))
 
@@ -14,10 +14,10 @@ CC = gcc
 all : $(NAME_BON)
 
 $(NAME_BON) : $(OBJ_BON) $(INCLUDES_BON) Makefile
-	$(CC) $(FLAGS) $(OBJ_BON) -o $(NAME_BON)
+	$(CC) $(FLAGS) $(OBJ_BON) -o $(NAME_BON) -pthread
 
 %.o : %.c $(INCLUDES_BON) Makefile
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -pthread
 
 clean:
 	rm -rf $(OBJ_BON)

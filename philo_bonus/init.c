@@ -54,10 +54,12 @@ void	create_semathors(t_data *data)
 {
 	sem_unlink("forks");
 	sem_unlink("log");
-	sem_unlink("time");
+	sem_unlink("time");	
+	sem_unlink("must_eat");
 	data->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, data->numb_philo);
 	data->time = sem_open("time", O_CREAT | O_EXCL, 0777, 1);
-	data->log = sem_open("log", O_CREAT | O_EXCL, 0777, 1);
+	data->log = sem_open("log", O_CREAT | O_EXCL, 0777, 1);	
+	data->must_eat = sem_open("must_eat", O_CREAT | O_EXCL, 0777, 1);
 }
 
 t_data	*init(int argc, char **argv)
