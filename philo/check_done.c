@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:24:49 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/04 18:53:56 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/06 14:07:31 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	loop_dead(t_data *data, int i)
 	{
 		pthread_mutex_lock(&data->time_mutex);
 		if (current_time() - data->philosophers[i]->time_eat \
-				>= data->time_to_die)
+				> data->time_to_die)
 		{
 			logs("died", data->philosophers[i]);
 			pthread_mutex_unlock(&data->time_mutex);

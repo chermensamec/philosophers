@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/06 15:48:29 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:50:30 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ void	create_semathors(t_data *data)
 {
 	sem_unlink("forks");
 	sem_unlink("log");
-	// data->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, 1);
+	sem_unlink("time");
 	data->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, data->numb_philo);
+	data->time = sem_open("time", O_CREAT | O_EXCL, 0777, 1);
 	data->log = sem_open("log", O_CREAT | O_EXCL, 0777, 1);
 }
 
@@ -70,7 +71,7 @@ t_data	*init(int argc, char **argv)
 
 	data = (t_data *)malloc(sizeof(t_data));
 	data->error = 1;
-	if (argc != 5 && argc != 6 && !data)
+	if ((argc != 5 && argc != 6) || !data)
 		return (data);
 	data->error = 0;
 	if (argc == 6)

@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:07:05 by sbart             #+#    #+#             */
-/*   Updated: 2022/07/04 18:29:24 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/06 13:11:11 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	main(int argc, char **argv)
 	}
 	create_pthreads(data);
 	check_dead(data);
-	// detach_pthread(data);
+	detach_pthread(data);
 	free_data(data);
 }

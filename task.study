@@ -1,3 +1,0 @@
-1 check loop for mutex
-2 check time with mutex and without 
-3 check time with 2, 3, 4 and 5 pthreads to get 10^10

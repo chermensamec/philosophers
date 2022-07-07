@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/04 18:57:56 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:50:59 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_data	*init(int argc, char **argv)
 
 	data = (t_data *)malloc(sizeof(t_data));
 	data->error = 1;
-	if (argc != 5 && argc != 6 && !data)
+	if ((argc != 5 && argc != 6) || !data)
 		return (data);
 	data->error = 0;
 	if (argc == 6)

@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:33:40 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/04 18:34:47 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/06 14:36:23 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ int	life_phil(t_philo	*philo)
 		return (1);
 	pthread_mutex_lock(philo->left);
 	logs("has taken a fork", philo);
-	if (philo->link->numb_philo == 1)
-	{
-		pthread_mutex_unlock(philo->left);
-		return (1);
-	}
 	pthread_mutex_lock(philo->right);
 	logs("has taken a fork", philo);
 	logs("is eating", philo);

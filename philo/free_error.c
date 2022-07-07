@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 14:24:57 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 15:47:29 by onelda           ###   ########.fr       */
+/*   Created: 2022/07/06 13:10:58 by onelda            #+#    #+#             */
+/*   Updated: 2022/07/06 13:10:59 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
 int	free_error(int error, t_data *data, int n)
 {
@@ -23,6 +23,7 @@ int	free_error(int error, t_data *data, int n)
 			free(data->philosophers[i++]);
 		free(data->philosophers);
 	}
-	free(data->p_id);
+	if (error >= 1)
+		free(data->fork);
 	return (1);
 }
