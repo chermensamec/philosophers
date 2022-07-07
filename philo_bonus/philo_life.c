@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:27:55 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 14:27:56 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:30:05 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	*philo_life(void	*param)
 		my_sleep(philo->link->time_to_eat);
 		sem_post(philo->link->forks);
 		sem_post(philo->link->forks);
+		if (philo->link->times_must_eat != -1)
+			philo->link->times_must_eat--;
 		logs("is sleeping", philo);
 		my_sleep(philo->link->time_to_sleep);
 		logs("is thinking", philo);
-		if (philo->link->times_must_eat != -1)
-			philo->link->times_must_eat--;
 	}
 	exit(0);
 }

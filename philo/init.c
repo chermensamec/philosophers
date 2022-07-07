@@ -6,22 +6,18 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 15:50:59 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 19:24:51 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	set_param(t_data *data, int argc, char **argv)
+void	set_param(t_data *data, char **argv)
 {
 	data->numb_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	if (data->numb_philo < 1 || data->time_to_die < 1 \
-			|| data->time_to_eat < 1 || data->time_to_sleep < 1 \
-			|| (argc == 6 && data->times_must_eat < 1))
-		data->error = 1;
 }
 
 int	set_philosopher_param(t_data *data, int i)
@@ -88,7 +84,13 @@ t_data	*init(int argc, char **argv)
 		data->times_must_eat = ft_atoi(argv[5]);
 	else
 		data->times_must_eat = -1;
-	set_param(data, argc, argv);
+	set_param(data, argv);
+	if (data->error)
+	{
+		printf("error");
+		free(data);
+		exit(1);
+	}
 	pthread_mutex_init(&data->eat_mutex, NULL);
 	pthread_mutex_init(&data->count_mutex, NULL);
 	pthread_mutex_init(&data->time_mutex, NULL);

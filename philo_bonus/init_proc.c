@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:26:51 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 14:26:52 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:31:42 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ int	check_philo_healf(t_philo *philo)
 			exit (1);
 		}
 		sem_post(philo->link->time);
-		if (philo->link->times_must_eat != -1 && philo->link->times_must_eat \
-			<= philo->count_eat)
-		{
-			exit (1);
-		}
 	}
 }
 

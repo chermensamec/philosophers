@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:28:32 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 14:28:33 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:31:46 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 typedef struct s_philo
 {
 	int				index;
-	int				count_eat;
 	long long		time_eat;
 	pthread_t		philo_pthread;
 	struct s_data	*link;	

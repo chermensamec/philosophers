@@ -6,22 +6,18 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 15:50:30 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 19:26:53 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	set_param(t_data *data, int argc, char **argv)
+void	set_param(t_data *data, char **argv)
 {
 	data->numb_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	if (data->numb_philo < 1 || data->time_to_die < 1 \
-			|| data->time_to_eat < 1 || data->time_to_sleep < 1 \
-			|| (argc == 6 && data->times_must_eat < 1))
-		data->error = 1;
 }
 
 int	set_philosophers_param(t_data *data, int i)
@@ -30,7 +26,6 @@ int	set_philosophers_param(t_data *data, int i)
 	if (!data->philosophers[i])
 		return (1);
 	data->philosophers[i]->index = i;
-	data->philosophers[i]->count_eat = 0;
 	data->philosophers[i]->link = data;
 	data->philosophers[i]->time_eat = current_time();
 	return (0);
@@ -78,7 +73,13 @@ t_data	*init(int argc, char **argv)
 		data->times_must_eat = ft_atoi(argv[5]);
 	else
 		data->times_must_eat = -1;
-	set_param(data, argc, argv);
+	set_param(data, argv);
+	if (data->error)
+	{
+		printf("error");
+		free(data);
+		exit(1);
+	}
 	data->error = create_philosophers(data);
 	create_semathors(data);
 	return (data);

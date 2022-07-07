@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:35:30 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 16:43:11 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:33:07 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	logs(char *str, t_philo *philo)
 {
-	
-	if (philo->count_eat < philo->link->times_must_eat || philo->link->times_must_eat == -1)
+	if (philo->link->times_must_eat != 0)
 	{
 		sem_wait(philo->link->log);
 		printf("%lld %d %s\n", current_time() \
