@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/08 15:25:10 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 16:02:36 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	create_philosophers(t_data *data)
 
 	i = 0;
 	data->p_id = malloc(sizeof(pid_t) * data->numb_philo);
-	if (data->p_id)
+	if (!data->p_id)
 		return (1);
 	data->philosophers = malloc(sizeof(t_philo *) * data->numb_philo);
 	if (!data->philosophers)

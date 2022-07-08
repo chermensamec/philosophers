@@ -6,7 +6,7 @@ NAME = philo
 
 INCLUDES = philo.h
 
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 OBJ = $(patsubst %.c, %.o, $(SRC_MAN))
 

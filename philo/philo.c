@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:07:05 by sbart             #+#    #+#             */
-/*   Updated: 2022/07/08 15:48:07 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 16:37:12 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,18 @@ int	check_param(int argc, char **argv)
 	int	j;
 
 	i = 1;
-	while (i != argc)
-	{
+	if (argc != 5 && argc != 6)
+		return (1);
+	while (i < argc)
+	{	
 		j = 0;
 		while (argv[i][j])
 		{
 			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-			{
-				printf("error\n");
 				return (1);
-			}
 			j++;
 		}
-		if (ft_atoi(argv[i]) > 2147483647)
+		if (ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) <= 0)
 			return (1);
 		i++;
 	}
