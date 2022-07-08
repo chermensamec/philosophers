@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:27:33 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 21:11:27 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:38:13 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	check_param(int argc, char **argv)
 			}
 			j++;
 		}
+		if (ft_atoi(argv[i]) > 2147483647)
+		{
+			printf("error\n");
+			exit (1);
+		}
 		i++;
 	}
 }
@@ -64,10 +69,11 @@ int	main(int argc, char *argv[])
 	check_param(argc, argv);
 	i = 0;
 	data = init(argc, argv);
-	if (data->error)
+	if (!data || data->error)
 	{
-		free(data);
-		printf("error");
+		if (data)
+			free(data);
+		printf("error\n");
 		return (0);
 	}
 	init_proc(data);

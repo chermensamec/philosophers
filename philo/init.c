@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 18:37:05 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 19:24:51 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:38:32 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,21 @@ int	create_philosophers(t_data *data)
 	return (0);
 }
 
-void	create_pthreads(t_data *data)
+int	create_pthreads(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	data->pthreads = malloc(sizeof(pthread_t) * data->numb_philo);
+	if (!data->pthreads)
+		return (1);
 	data->time_start = current_time();
 	while (i < data->numb_philo)
 	{
 		pthread_create(data->pthreads + i, NULL, lunch, data->philosophers[i]);
 		i++;
 	}
+	return (0);
 }
 
 t_data	*init(int argc, char **argv)
@@ -76,7 +79,6 @@ t_data	*init(int argc, char **argv)
 	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
-	data->error = 1;
 	if ((argc != 5 && argc != 6) || !data)
 		return (data);
 	data->error = 0;
@@ -86,11 +88,7 @@ t_data	*init(int argc, char **argv)
 		data->times_must_eat = -1;
 	set_param(data, argv);
 	if (data->error)
-	{
-		printf("error");
-		free(data);
-		exit(1);
-	}
+		return (data);
 	pthread_mutex_init(&data->eat_mutex, NULL);
 	pthread_mutex_init(&data->count_mutex, NULL);
 	pthread_mutex_init(&data->time_mutex, NULL);

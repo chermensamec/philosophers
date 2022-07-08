@@ -1,11 +1,11 @@
 SRC_BON = free_error.c init.c log.c my_sleep.c philo_life.c current_time.c \
-				ft_atoi.c init_proc.c main.c
+		  ft_atoi.c init_proc.c philo_bonus.c
 
 NAME_BON = philo_bonus
 
 INCLUDES_BON = philo_bonus.h
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
 
 OBJ_BON = $(patsubst %.c, %.o, $(SRC_BON))
 
@@ -14,10 +14,10 @@ CC = gcc
 all : $(NAME_BON)
 
 $(NAME_BON) : $(OBJ_BON) $(INCLUDES_BON) Makefile
-	$(CC) $(FLAGS) $(OBJ_BON) -o $(NAME_BON) -pthread
+	$(CC) $(FLAGS) $(OBJ_BON) -o $(NAME_BON)
 
 %.o : %.c $(INCLUDES_BON) Makefile
-	$(CC) $(FLAGS) -c $< -o $@ -pthread
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_BON)

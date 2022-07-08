@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:07:05 by sbart             #+#    #+#             */
-/*   Updated: 2022/07/07 21:09:57 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:48:07 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,21 @@ void	free_data(t_data *data)
 
 	i = 0;
 	while (i < data->numb_philo)
+	{
+		pthread_mutex_destroy(&data->fork[i]);
 		free(data->philosophers[i++]);
+	}
+	pthread_mutex_destroy(&data->log);
+	pthread_mutex_destroy(&data->eat_mutex);
+	pthread_mutex_destroy(&data->count_mutex);
+	pthread_mutex_destroy(&data->time_mutex);
 	free(data->philosophers);
 	free(data->fork);
 	free(data->pthreads);
 	free(data);
 }
 
-void	check_param(int argc, char **argv)
+int	check_param(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -48,28 +55,39 @@ void	check_param(int argc, char **argv)
 			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
 			{
 				printf("error\n");
-				exit(1);
+				return (1);
 			}
 			j++;
 		}
+		if (ft_atoi(argv[i]) > 2147483647)
+			return (1);
 		i++;
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	check_param(argc, argv);
+	if (check_param(argc, argv))
+	{
+		printf("error\n");
+		return (0);
+	}
 	data = init(argc, argv);
-	if (data->error)
+	if (!data || data->error)
 	{
 		free(data);
 		printf("error\n");
 		return (0);
 	}
-	create_pthreads(data);
-	check_dead(data);
-	detach_pthread(data);
-	free_data(data);
+	if (create_pthreads(data))
+		free_error(3, data, data->numb_philo);
+	else
+	{
+		check_dead(data);
+		detach_pthread(data);
+		free_data(data);
+	}
 }

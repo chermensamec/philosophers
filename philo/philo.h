@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:06:57 by sbart             #+#    #+#             */
-/*   Updated: 2022/07/04 18:28:21 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:30:35 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ typedef struct s_data
 }		t_data;
 
 void		my_sleep(int time);
-int			ft_atoi(const char *string);
+long long	ft_atoi(const char *string);
 t_data		*init(int argc, char **argv);
 void		*lunch(void *param);
 long long	current_time(void);
-void		create_pthreads(t_data *data);
+int			create_pthreads(t_data *data);
 void		logs(char *str, t_philo *philo);
 void		check_dead(t_data *data);
 int			free_error(int error, t_data *data, int n);

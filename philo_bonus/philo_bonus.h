@@ -6,7 +6,7 @@
 /*   By: onelda <onelda@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:28:32 by onelda            #+#    #+#             */
-/*   Updated: 2022/07/07 17:31:46 by onelda           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:36:50 by onelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <signal.h>
-# include <fcntl.h>
+
 typedef struct s_philo
 {
 	int				index;
@@ -49,7 +49,7 @@ typedef struct s_data
 }		t_data;
 
 t_data		*init(int argc, char **argv);
-int			ft_atoi(const char *string);
+long long	ft_atoi(const char *string);
 int			free_error(int error, t_data *data, int n);
 long long	current_time(void);
 void		*philo_life(void	*param);
