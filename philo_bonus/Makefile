@@ -5,7 +5,7 @@ NAME_BON = philo_bonus
 
 INCLUDES_BON = philo_bonus.h
 
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
+FLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread
 
 OBJ_BON = $(patsubst %.c, %.o, $(SRC_BON))
 
